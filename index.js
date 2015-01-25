@@ -11,13 +11,13 @@ module.exports.extension = function() {
 
     var transports = [
         new winston.transports.File({
-            filename: path.join(twee.getBaseDirectory(), twee.getConfig('twee:options:logging:winston:accessFile'))
+            filename: path.join(twee.getBaseDirectory(), twee.getConfig('extension:twee-logging:winston:accessFile'))
         })
     ];
 
-    if (twee.getConfig('twee:options:logging:winston:consoleLogging')) {
+    if (twee.getConfig('extension:twee-logging:winston:consoleLogging')) {
         transports.push(new winston.transports.Console(
-            twee.getConfig('twee:options:logging:winston:consoleLoggingOptions')
+            twee.getConfig('extension:twee-logging:winston:consoleLoggingOptions')
         ));
     }
 
@@ -25,9 +25,32 @@ module.exports.extension = function() {
         transports: transports,
         exceptionHandlers: [
             new winston.transports.File({
-                filename: path.join(twee.getBaseDirectory(), twee.getConfig('twee:options:logging:winston:exceptionsFile'))
+                filename: path.join(twee.getBaseDirectory(), twee.getConfig('extension:twee-logging:winston:exceptionsFile'))
             })
         ],
-        exitOnError: twee.getConfig('twee:options:logging:winston:exitOnError')
+        exitOnError: twee.getConfig('extension:twee-logging:winston:exitOnError')
     }));
+};
+
+
+
+module.exports.configNamespace = 'twee-logging';
+
+module.exports.config = {
+    "winston": {
+        "accessFile": "var/log/access.json",
+        "exceptionsFile": "var/log/exceptions.json",
+        "exitOnError": false,
+        "consoleLogging": false,
+        "consoleLoggingOptions": {
+            "colorize": true,
+            // optional: control whether you want to log the meta data about the request (default to true)
+            "meta": true,
+            "msg": "HTTP {{res.statusCode}} {{req.method}} {{res.responseTime}}ms {{req.url}}",
+            // Use the default Express/morgan request formatting, with the same colors. Enabling this will override any msg and colorStatus if true.
+            // Will only output colors on transports with colorize set to true
+            "expressFormat": true,
+            "colorStatus": true
+        }
+    }
 };
