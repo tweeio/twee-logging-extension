@@ -1,7 +1,7 @@
 {
     "name": "twee-logging-extension",
     "preferGlobal": false,
-    "version": "0.0.1",
+    "version": "0.0.2",
     "author": "Dmitri Mesin <dmitri.mesin@gmail.com>",
     "homepage": "https://github.com/mesin/twee-i18n-extension",
     "description": "Logging Middleware Extension for Twee.io Framework - MVC Framework for Node.js and io.js based on Express.js",
