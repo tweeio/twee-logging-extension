@@ -11,13 +11,13 @@ module.exports.extension = function() {
 
     var transports = [
         new winston.transports.File({
-            filename: path.join(twee.getBaseDirectory(), twee.getConfig('extension:twee-logging:winston:accessFile'))
+            filename: path.join(twee.getBaseDirectory(), twee.getConfig('twee:extension:twee-logging:winston:accessFile'))
         })
     ];
 
-    if (twee.getConfig('extension:twee-logging:winston:consoleLogging')) {
+    if (twee.getConfig('twee:extension:twee-logging:winston:consoleLogging')) {
         transports.push(new winston.transports.Console(
-            twee.getConfig('extension:twee-logging:winston:consoleLoggingOptions')
+            twee.getConfig('twee:extension:twee-logging:winston:consoleLoggingOptions')
         ));
     }
 
@@ -25,10 +25,10 @@ module.exports.extension = function() {
         transports: transports,
         exceptionHandlers: [
             new winston.transports.File({
-                filename: path.join(twee.getBaseDirectory(), twee.getConfig('extension:twee-logging:winston:exceptionsFile'))
+                filename: path.join(twee.getBaseDirectory(), twee.getConfig('twee:extension:twee-logging:winston:exceptionsFile'))
             })
         ],
-        exitOnError: twee.getConfig('extension:twee-logging:winston:exitOnError')
+        exitOnError: twee.getConfig('twee:extension:twee-logging:winston:exitOnError')
     }));
 };
 

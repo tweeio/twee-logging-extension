@@ -6,7 +6,7 @@
 [![npm](https://img.shields.io/npm/dm/localeval.svg)](https://github.com/tweeio/twee-framework)
 [![npm](https://img.shields.io/npm/l/express.svg)](https://github.com/tweeio/twee-framework)
 
-Logging Middleware Extension for Twee.io Framework - MVC Framework for Node.js and io.js based on Express.js.
+Logging Extension for Twee.io Framework - MVC Framework for Node.js and io.js based on Express.js.
 
 Uses `winston` logger. Logs into json files, can also be enabled to log into console.
 
@@ -14,4 +14,25 @@ To install it use this command:
 
 ```
 npm install twee-logging-extension --save
+```
+
+
+Editing `package.json` of your application:
+
+```
+"dependencies": {
+    "twee-logging-extension": "*"
+}
+```
+
+Turning extension `ON` in `application/configs/twee.js`:
+
+```
+module.exports = {
+    "extensions": {
+        "Logging": {
+            "module": "twee-logging-extension"
+        }
+    }
+};
 ```
